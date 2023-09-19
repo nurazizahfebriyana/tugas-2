@@ -1,2 +1,2 @@
 release: django-admin migrate --noinput
-web: gunicorn tugas_2.wsgi
+web: gunicorn inventory.wsgi

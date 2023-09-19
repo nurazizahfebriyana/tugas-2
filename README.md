@@ -2,6 +2,7 @@ Nama    : Nur Azizah Febriyana
 NPM     : 2206824363
 Kelas   : PBP-B
 
+**TUGAS-2**
 link app : https://kwangyaaa.adaptable.app/
 link repo : https://github.com/nurazizahfebriyana/tugas-2.git 
 
@@ -126,3 +127,176 @@ Hubungan antara berkas urls.py, views.py, models.py, dan berkas HTML dalam sebua
         3. ViewModel: Berfungsi sebagai perantara antara Model dan View. Ini mengubah data dari Model ke format yang dapat ditampilkan oleh View dan merespons input dari pengguna.
 
     - **Perbedaan** dari ketiganya adalah dari bagaimana mereka mengelola tampilan dan alur kontrol dalam aplikasi. MVC memiliki kontroler yang mengendalikan alur, MVT menggunakan Template untuk mengatur tampilan, dan MVVM memiliki ViewModel yang bertindak sebagai perantara antara Model dan View. Pemilihan pola tergantung pada jenis aplikasi yang dikembangkan dan kerangka kerja yang digunakan, serta preferensi dan kebutuhan spesifik proyek yang dibuat.
+
+
+========================================================================================================================================================================================================================================================================
+Nama    : Nur Azizah Febriyana
+NPM     : 2206824363
+Kelas   : PBP-B
+
+**TUGAS-3**
+
+1. Apa perbedaan antara form POST dan form GET dalam Django?
+    **form POST**
+    Digunakan untuk mengirim data ke server untuk mengolahnya.Jika berhasil, maka akan mengembalikan kode status HTTP 201. Metode ini tidak menampilkan nilai variabel (data) pada URL sehingga lebih aman. Pada metode POST ini juga tidak memiliki batasan panjang data sehingga data yang dikirim dapat lebih besar.
+
+    **form GET**
+    Digunakan untuk mengambil data dari server tanpa mengubahnya.GET mengembalikan HTTP kode status 200 (OK) jika data berhasil diambil dari server. Metode ini menampilkan nilai variabel (data) pada URL sehingga kurang aman bila digunakan untuk mengirim data yang penting seperti password. Metode ini memiliki batasan panjang data sehingga tidak disarankan untuk digunakan dalam mengirim data yang besar atau sensitif.
+
+
+2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+    **XML**
+    -Format fleksibel untuk struktur data hierarkis dengan penggunaan tag dan atribut.
+    -Sintaksis kompleks, cocok untuk data dengan struktur rumit.
+    -Digunakan untuk representasi data fleksibel dalam berbagai konteks, seperti konfigurasi berkas dan pertukaran data antar aplikasi.
+    
+    **JSON**
+    -Format pertukaran data sederhana berdasarkan pasangan "key-value" untuk data terstruktur.
+    -Sintaksis sederhana dan mudah dibaca, populer dalam pertukaran data web.
+    -Digunakan untuk pertukaran data dalam lingkungan web dan aplikasi, terutama dalam API RESTful.
+
+    **HTML**
+    -Bahasa markup khusus untuk membuat halaman web dengan elemen-elemen seperti teks, gambar, dan formulir.
+    -Sintaksis khusus untuk peramban web, tidak selalu mudah dibaca oleh manusia dalam bentuk sumber.
+    -Digunakan untuk membuat halaman web yang dapat dilihat oleh peramban web, terutama untuk antarmuka pengguna web.
+    
+3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+    Ini disebabkan oleh kecenderungan JSON untuk memiliki pertukaran data yang efisien dan dapat dengan mudah diinterpretasikan oleh komputer maupun manusia. Hal ini terjadi karena JSON menggunakan kombinasi kode yang sederhana untuk membentuk array, yang dapat dengan mudah dibuat dan dimengerti. JSON juga memiliki banyak kegunaan dalam mendukung perancangan aplikasi di perguruan tinggi, terutama saat menggunakan metode RESTful API dan Layanan Web.
+
+4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+    **Membuat input form untuk menambahkan objek model pada app sebelumnya**
+    1. Mengaktifkan virtual environment dan melakukan set routing dari main/ ke / pada urlpattern
+
+    2. Mengimplementasi skeleton sebagai kerangka views dengan membuat file html bernama base.html pada root folder dan pada file settings.py pada subdirektori inventory menambahkan potongan kode ini:
+    'DIRS': [BASE_DIR / 'templates'],
+    pada baris yang mengandung TEMPLATES. Pada file main.html di subdirektori templates di main mengubahnya menjadi :
+        {% extends 'base.html' %}
+
+        {% block content %}
+
+            <h3>Nama: </h3>
+            <p>{{nama}}</p>
+            <h3>Kelas: </h3>
+            <p>{{kelas}}</p>
+
+    
+            <h1>Kwangya Store</h1>
+
+            <h5>Product Name: </h5>
+            <p>{{name}}</p> 
+            <h5>Price: </h5>
+            <p>{{price}}</p> 
+            <h5>Description: </h5>
+            <p>{{description}}</p>
+            <h5>Stock: </h5>
+            <p>{{amount}}</p>
+        {% endblock content %} 
+
+    3. Membuat input form dengan membuat file forms.py pad direktori main :
+    from django.forms import ModelForm
+    from main.models import Item
+
+    class ProductForm(ModelForm):
+        class Meta:
+            model = Item
+            fields = ["name", "price", "description", "amount"]
+    
+    Selain itu juga menambahkan beberaoa import dan fungsi baru yakni create_product(request) di file views.py pada folder main dimana fungsi tersebut menerima parameter request serta mengubah sedikit pada fungsi show_main(request).
+
+    4. Menambahkan import fungsi create_product di urls.py pada forder main, serta menambahkan path urlnya juga.
+
+    5. Membuat berkas HTML baru dengan nama create_product.html pada direktori main/templates:
+    {% extends 'base.html' %} 
+
+    {% block content %}
+    <h1>Add New Product</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Add Product"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    {% endblock %}
+
+    6. Pada main.html, menambahkan kode di dalam {% block content %} yaitu :
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Date Added</th>
+        </tr>
+    
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    
+        {% for product in products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.amount}}</td>
+                <td>{{product.date_added}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <br />
+    
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
+    7. Mencoba menambahkan beberapa item baru melalui link local host.
+    
+    **Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID**
+    Pada tahap sebelumnya fungsi view dalam format sudah dibuat, tersisa format XML, JSON, XML by ID dan JSON by ID.
+    1. Menambahkan import pada views.py di folder main yaitu import HttpResponse dan Serializer. lalu menambahkan fungsi yang menerima parameter request dan return HttpResponse yakni:
+    def show_xml(request):
+        data = Item.objects.all()
+        return HttpResponse(serializers.serialize("xml", data), content_type="application/xml") 
+    Kemudian pada urls.py di main juga menambahkan import show_xml nya dan menambahkan path url di urlpatterns. Mencoba runserver dan buka link local host xml nya.
+
+    2. Menambahkan fungsi yang menerima parameter request dan return HttpResponse yakni:
+    def show_json(request):
+        data = Item.objects.all()
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    Kemudian pada urls.py di main juga ditambah import show_json dan path url di urlpatterns. Mencoba runserver dan buka link local host json nya.
+
+    3. Menambahkan fungsi yang menerima parameter dan id yang return berupa HttpResponse yang berisi parameter data hasil query yang sudah diserialisasi menjadi JSON atau XML dan parameter content_type dengan value "application/xml" atau"application/json" yakni :
+
+    def show_xml_by_id(request, id):
+        data = Item.objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+    def show_json_by_id(request, id):
+        data = Item.objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+    Kemudian pada urls.py di main ditambahkan import fungsi show_xml_by_id dan show_json_by_id serta path url di urlpatterns. Mencoba runserver dan buka link local host xml by id dan json by id.
+
+
+    **Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2**
+    Menambahkan ID contoh pada akhiran URL nya. Pada proyek ini, saya telah menambahkan 2 produk item. Jika saya ingin melihat produk yang pertama saya tambahkan, maka saya hanya perlu menambahkan /1 pada akhiran URL di formatnya baik xml by id atau json by id.
+
+    **Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md**
+    Membuka postman dengan memastikan bahwa server sudah berjalan. Kemudian, klik "GET" dan copy link localhost pada setiap format dan klik "SEND" untuk melihat response dari request yang dikirim.
+
+    Lampiran foto screenshoot:
+    ![This is an image](/Screenshot_Format_HTML.jpg)
+    ![This is an image](/Screenshot_Format_XML.jpg)
+    ![This is an image](/Screenshot_Format_JSON.jpg)
+    ![This is an image](/Screenshot_Format_XML_by_ID.jpg)
+    ![This is an image](/Screenshot_Format_JSON_by_ID.jpg)
+
+    **Melakukan add-commit-push ke GitHub**
+
