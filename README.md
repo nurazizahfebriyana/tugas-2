@@ -433,3 +433,30 @@ Kelas   : PBP-B
     4. Pada main.html menambahkan kode ini setelah penampilan produk yang ada dan sebelum button add new product dan button logout :
     <h5>Your last login: {{ last_login }}</h5>
     5. Melakukan run server dan membukan link local host, kemudian login dengan salah satu akun. Untuk melihat cookies, melakukan cara yang sama seperti tutorial 3 dengan fitur inspect element di bagian Application/Storage. Akan terlihat last_login, sessionid, dan csrftoken. Jika melakukan logout, sessionid dan last_login akan hilang.
+
+    **Bonus**
+    1. Menambahkan beberapa kode untuk fitur tambah, kurang, dan delete product seperti berikut :
+
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.description}}</td>
+                <td>
+                <a href="{% url 'main:decrease' product.id %}">
+                    <button>-</button>
+                </a>
+                {{product.amount}}
+                <a href="{% url 'main:increase' product.id %}">
+                    <button>+</button>
+                </a>
+                </td>
+                <td>{{product.date_added}}</td>
+                <td>
+                    <a href="{% url 'main:delete' product.id %}">
+                        <button>delete</button>
+                    </a>
+                </td>
+            </tr>
+
+    2. Menambahkan fungsi increase, decrease, dan delete pada views.py
+    3. Menambahkan import fungsi increase, decrease, dan delete pada urls.py di main dan menambahkan path pada urlspatternnya.
