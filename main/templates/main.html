@@ -1,56 +1,130 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+<title>Products</title>
+<style>
+    .product-bubble {
+        display: flex;
+        align-items: center;
+        border: 1px solid #9124cf;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #eac1ef;
+    }
+
+    .product-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .product-details {
+        flex-grow: 1;
+    }
+
+    .product-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .product-description {
+        margin-bottom: 5px;
+    }
+
+    .product-price,
+    .product-amount,
+    .product-date {
+        margin-bottom: 5px;
+    }
+
+    .product-actions {
+        display: flex;
+        align-items: center;
+    }
+
+    .action-button {
+        background-color: #ba63dc;
+        color: #fff;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    .action-button-delete {
+        background-color: #ba0d72;
+        color: #fff;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    .action-button-logout {
+        background-color: #ac36db;
+        color: #fff;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+</style>
+
+{% endblock meta %}
 {% block content %}
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="https://yt3.googleusercontent.com/rD5w3FIsk4BSctADzRYlOBPsdipd9eurjyditDWnXZ8Nj9o7gOxB4649LkYik7HNTomJ9Vtl=s900-c-k-c0x00ffffff-no-rj" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Kwangya Store
+        </a>
+        <a href="{% url 'main:logout' %}">
+            <button class="action-button-logout">
+                Logout
+            </button>
+        </a>
+    </div>
+</nav>
 
     <h3>Nama: </h3>
     <p>{{nama}}</p>
     <h3>Kelas: </h3>
     <p>{{kelas}}</p>
 
-    
-    <h1>Kwangya Store</h1>
-
-    <h5>Product Name: </h5>
-    <p>{{name}}</p> 
-    <h5>Price: </h5>
-    <p>{{price}}</p> 
-    <h5>Description: </h5>
-    <p>{{description}}</p>
-    <h5>Stock: </h5>
-    <p>{{amount}}</p>
-
+    <body style="background-color:  #e094f0;">
     <table>
-        <tr>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Stock</th>
-            <th>Date Added</th>
-        </tr>
-    
         {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
     
         {% for product in products %}
-            <tr>
-                <td>{{product.name}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.description}}</td>
-                <td>
+        <div class="product-bubble">
+            <img src="{{ product.photo }}" class="product-image">
+            <div class="product-details">
+                <h4 class="product-name">{{ product.name }}</h4>
+                <p class="product-description">{{ product.description }}</p>
+                <p class="product-price">Price: {{ product.price }}</p>
+                <p class="product-amount">Amount: {{ product.amount }}</p>
+                <p class="product-date">Date added: {{ product.date_added }}</p>
+            </div>
+            <div class="product-actions">
                 <a href="{% url 'main:decrease' product.id %}">
-                    <button>-</button>
+                    <button class="action-button">-</button>
                 </a>
-                {{product.amount}}
                 <a href="{% url 'main:increase' product.id %}">
-                    <button>+</button>
+                    <button class="action-button">+</button>
                 </a>
-                </td>
-                <td>{{product.date_added}}</td>
-                <td>
-                    <a href="{% url 'main:delete' product.id %}">
-                        <button>delete</button>
-                    </a>
-                </td>
-            </tr>
+                <a href="{% url 'main:edit_product' product.pk %}">
+                    <button class="action-button">Edit</button>
+                </a>
+                <a href="{% url 'main:delete' product.id %}">
+                    <button class="action-button-delete">Delete</button>
+                </a>
+            </div>
+        </div>
         {% endfor %}
     </table>
     
@@ -59,15 +133,9 @@
     <h5>Your last login: {{ last_login }}</h5>
     
     <a href="{% url 'main:create_product' %}">
-        <button>
+        <button class="action-button">
             Add New Product
         </button>
     </a>
-
-    <a href="{% url 'main:logout' %}">
-        <button>
-            Logout
-        </button>
-    </a>
-
+    </body>
 {% endblock content %}

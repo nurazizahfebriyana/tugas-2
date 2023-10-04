@@ -9,3 +9,4 @@ class Item(models.Model):
     amount = models.IntegerField(default=0)
     date_added = models.DateField(auto_now = True, null= True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    photo = models.CharField(max_length=255, default = '')

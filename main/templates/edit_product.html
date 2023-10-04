@@ -1,9 +1,10 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
+{% load static %}
 {% block meta %}
-<title>Create Product</title>
-<style>
-    body{margin: 0;
+<title>Edit Produk</title>
+<style>body
+    {margin: 0;
     padding: 0;
     background: url(https://hypeabis.id/assets/content/20230101154416000000PreviewposterKonserSMCUPALACEKWANGYA.jpeg) no-repeat;
     height: 100vh;
@@ -12,7 +13,8 @@
     background-repeat: no-repeat;
     background-position: center;
     overflow: hidden}
-    @media screen and (max-width: 600px){body{background-size: cover fixed}}
+    @media screen and (max-width: 600px)
+    {body{background-size: cover fixed}}
     #particles-js{height: 80%}
     .loginBox{
         position: absolute;
@@ -27,10 +29,11 @@
         box-sizing: border-box}
     .user{margin: 0 auto;display: block;margin-bottom: 20px}
     h3{
-        margin: 0;
-        padding: 0 0 20px;
-        color: #9856db;
-        text-align: center}
+            margin: 0;
+            padding: 0 0 20px;
+            color: #9856db;
+            text-align: center}
+            
     .loginBox input{width: 100%;margin-bottom: 20px}
     .loginBox input[type="submit"]{border: none;outline: none;height: 50px;font-size: 16px;background:#7e3ebe;color: #fff;border-radius: 20px;cursor: pointer}
     </style>
@@ -38,16 +41,18 @@
 
 {% block content %}
 <div class = "loginBox">
-    <h3 style="color:#7e3ebe">Add New Product</h3>
+    <h3 style="color:#7e3ebe">Edit</h3>
+
     <form method="POST">
         {% csrf_token %}
         <table>
             {{ form.as_table }}
+            <tr>
                 <td>
-                    <input type="submit" value="Add Product"/>
+                    <input type="submit" value="Edit Product"/>
                 </td>
             </tr>
         </table>
     </form>
-
-{% endblock %}
+</div>
+{% endblock content %}

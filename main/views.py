@@ -33,6 +33,7 @@ def create_product(request):
     if form.is_valid() and request.method == "POST":
         item = form.save(commit=False)
         item.user = request.user
+        item.photo = request.POST.get('photo')
         item.save()
         return HttpResponseRedirect(reverse('main:show_main'))
 
@@ -54,6 +55,22 @@ def decrease(request, id):
     product.amount -= 1
     product.save() 
     return response
+
+def edit_product(request, id):
+    # Get product berdasarkan ID
+    product = Item.objects.get(pk = id)
+
+    # Set product sebagai instance dari form
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        product.photo = request.POST.get('photo')
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
 
 def delete(request, id):
     product = Item.objects.get(pk=id)

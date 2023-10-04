@@ -460,3 +460,193 @@ Kelas   : PBP-B
 
     2. Menambahkan fungsi increase, decrease, dan delete pada views.py
     3. Menambahkan import fungsi increase, decrease, dan delete pada urls.py di main dan menambahkan path pada urlspatternnya.
+
+
+========================================================================================================================================================================================================================================================================
+Nama    : Nur Azizah Febriyana
+NPM     : 2206824363
+Kelas   : PBP-B
+
+**TUGAS-5**
+
+1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+**Selector Elemen (Element Selector)**:
+-Manfaat: Memilih elemen berdasarkan nama elemennya. Misalnya, p akan memilih semua elemen paragraf.
+-Kapan Menggunakan: Cocok untuk memilih semua instansi dari suatu elemen tertentu pada halaman.
+
+**Selector Kelas (Class Selector)**:
+-Manfaat: Memilih elemen berdasarkan nama kelas yang diberikan. Misalnya, .container akan memilih semua elemen dengan kelas "container".
+-Kapan Menggunakan: Ideal untuk mengaplikasikan gaya yang sama pada beberapa elemen dengan kelas yang sama.
+
+**Selector ID (ID Selector)**:
+-Manfaat: Memilih elemen berdasarkan ID yang diberikan. Misalnya, #header akan memilih elemen dengan ID "header".
+-Kapan Menggunakan: Terbaik untuk mengaplikasikan gaya khusus pada satu elemen tertentu, karena ID harus unik dalam satu halaman.
+
+**Selector Atribut (Attribute Selector)**:
+-Manfaat: Memilih elemen berdasarkan nilai atribut tertentu. Misalnya, [type="text"] akan memilih semua elemen dengan atribut type yang memiliki nilai "text".
+-Kapan Menggunakan: Berguna ketika ingin memilih elemen berdasarkan atribut tertentu.
+
+**Selector Anak Langsung (Child Selector)**:
+-Manfaat: Memilih elemen anak langsung dari elemen tertentu. Misalnya, ul > li akan memilih elemen li yang langsung berada di dalam elemen ul.
+-Kapan Menggunakan: Berguna ketika hanya ingin memilih elemen yang langsung berada di bawah elemen lain.
+
+**Selector Pseudo-class dan Pseudo-element**:
+-Manfaat: Pseudo-class (seperti :hover, :active) digunakan untuk memilih elemen dalam keadaan tertentu, sedangkan pseudo-element (seperti ::before, ::after) memungkinkan penambahan konten tertentu sebelum atau setelah elemen.
+-Kapan Menggunakan: Pseudo-class digunakan untuk menanggapi interaksi pengguna, sementara pseudo-element digunakan untuk menambahkan gaya tambahan ke elemen.
+
+
+2. Jelaskan HTML5 Tag yang kamu ketahui.
+HTML5 atau Hypertext Markup Language versi 5 merupakan spesifikasi terbaru dari HTML, yang merupakan bahasa markup inti untuk membuat atau merancang sebuah kontek-konten pada web dengan tujuan berikut:
+    - Mendorong markah semantik (bermakna)
+    - Memisahkan desain dari konten
+    - Mempromosikan aksesibilitas dan daya tanggap desain
+    - Mengurangi tumpang tindih antara HTML, CSS, dan JavaScript
+    - Mendukung pengalaman media yang kaya sekaligus menghilangkan kebutuhan akan plugin seperti Flash atau Java
+    - Elemen semantik baru seperti <nav>, <header>, <footer>,<artikel>, <bagian>
+    - Atribut baru dari elemen formulir seperti datalist, keygen, output
+    - Jenis masukan baru: tanggal waktu, nomor, email, bulan, url, warna, dll.
+    - Atribut input baru: wajib diisi, placeholder, fokus otomatis
+    - Elemen grafis baru: <svg> dan <canvas>
+    - Elemen multimedia baru: <audio> dan <video>
+
+3. Jelaskan perbedaan antara margin dan padding.
+Margin dan padding merupakan dua konsep pada desain CSS yang mengatur tata letak elemen HTML.
+    **Margin**
+    Merupakan ruang di sekitar elemen yang berarti margin ini memiliki fungsi untuk mengatur atau memberi jarak antara elemen satu dengan elemen-elemen di sekitarnya. Margin mempengaruhi elemen dari luar batas elemen tersebut. Jadi, perubahan dalam margin akan mempengaruhi seberapa jauh elemen tersebut dari elemen-elemen tetangganya.
+    **Padding**
+    Mengacu pada ruang antar elemen yang berarti padding memiliki fungsi mengatur atau memberikan jarak antara konten elemen dengan batasnya. Padding mempengaruhi elemen dari dalam batas elemen tersebut. Jadi, perubahan dalam padding akan mempengaruhi seberapa jauh konten dari batas elemen.
+
+4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+**Desain**
+-CSS Tailwind : Membangun interface yang menggabungkan class utilitas yang lebih kecil sehingga kebebasan kreatif lebih besar dan memungkinkan penggunaan class yang spesifik.
+-Bootstrap : Menyediakan komponen-komponen gaya bawaan yang sudah didesain dengan baik sehingga mampu mempercepat proses desain komponen dengan baik.
+
+**Fleksibilitas**
+-CSS Tailwind : Lebih fleksibel karena memungkinkan pengguna membangun desain secara kustom sesuai dengan keinginan dan kebutuhan sehingga pengguna memiliki kendali yang penuh atas gaya desainnya.
+-Bootstrap : Terdapat keterbatasan karena desain yang diberikan sudah bawaaan dari bootsrap itu sendiri yang lebih mementingkan kemudahan dalam desain.
+
+**Ukuran file**
+-CSS Tailwind : Ukuran file yang lebih ringan, tetapi bisa bergantung pada desain pengguna.
+-Bootstrap : Ukuran file memungkinkan lebih besar karena adanya desain bawaan.
+
+**Ekosistem pengembangan**
+-CSS Tailwind : didukung oleh dokumentasi yang baik dan komunitas yang aktif. Berbagai sumber daya, plugin, dan integrasi dengan kerangka kerja JavaScript seperti React atau Vue dapat ditemukan, memberikan fleksibilitas tambahan kepada pengembang.
+-Bootstrap : memiliki ekosistem yang sangat kuat, didukung oleh dokumentasi yang komprehensif, beragam tema dan template yang tersedia, serta dukungan komunitas yang luas. Ini memudahkan pengembang untuk memulai proyek dengan cepat dan mengakses sumber daya yang diperlukan.
+
+**Kapan menggunakan CSS Tailwind dan Bootstrap?**
+- CSS Tailwind : Karena tailwind didesain untuk lebih fleksibel, maka penggunaan framework ini sangat cocok untuk pengembang yang ingin lebih spesifik dan tampilan yang lebih unik mengenai desain yang diinginkan dan dibutuhkan sehingga menghindari penggunaan gaya default. Framework ini didesain khusus untuk pengembang yang ingin menciptakan tampilan yang khusus untuk suatu proyek yang ingin dibangun.
+-Bootstrap : Karena bootstrap didesain dengan komponen dengan gaya bawaan, sehingga ini lebih baik digunakan saat pengembang ingin menggunakan komponen yang siap pakai dengan konsistensi visual yang tinggi serta desain yang terbukti dan waktu desain yang lebih cepat.
+ 
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+    1. Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut
+    -Menambahkan beberapa kode pada base.html tepatnya di dalaam block meta :
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    -Menambahkan bootstrap CSS dan jS
+
+    2. Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.
+    -Untuk tahap ini saya mendapatkan inspirasi template dari https://bbbootstrap.com/snippets/bootstrap-glowing-login-form-61831104
+    -Mengedit beberapa elemen agar sesuai dengan format-format elemen yang sudah ada
+    -untuk fungsi tambah inventori, saya sedikit menambahkan pada file forms.py,views.py, dan models.py yang berguna saat melakukan pengeditan/kustomisasi halaman daftar inventori.
+    -contoh pada models.py:
+    class Item(models.Model):
+        name = models.CharField(max_length=255, default = '')
+        price = models.CharField(max_length=255, default = '')
+        description = models.TextField()
+        amount = models.IntegerField(default=0)
+        date_added = models.DateField(auto_now = True, null= True)
+        user = models.ForeignKey(User, on_delete=models.CASCADE)
+        photo = models.CharField(max_length=255, default = '') -->tambahannya
+    -pada views.py menambahkan request.POST.get('photo') pada fungsi edit_product dan create_product.
+    
+    3. Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.
+    -Pada tahap ini saya menambahkan template dari bootstrap sebagai header dari halaman daftar inventori:
+    <nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="https://yt3.googleusercontent.com/rD5w3FIsk4BSctADzRYlOBPsdipd9eurjyditDWnXZ8Nj9o7gOxB4649LkYik7HNTomJ9Vtl=s900-c-k-c0x00ffffff-no-rj" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+            Kwangya Store
+        </a>
+        <a href="{% url 'main:logout' %}">
+            <button class="action-button-logout">
+                Logout
+            </button>
+        </a>
+    </div>
+    </nav>
+    -Mengatur warna background sesuai dengan keinginan
+    -Membentuk template untuk tata letak foto, nama, harga, amount, date added pada produk tersebut dalam bentuk bubble-bubble:
+    <style>
+    .product-bubble {
+        display: flex;
+        align-items: center;
+        border: 1px solid #9124cf;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #eac1ef;
+    }
+
+    .product-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .product-details {
+        flex-grow: 1;
+    }
+
+    .product-name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .product-description {
+        margin-bottom: 5px;
+    }
+
+    .product-price,
+    .product-amount,
+    .product-date {
+        margin-bottom: 5px;
+    }
+
+    .product-actions {
+        display: flex;
+        align-items: center;
+    }
+
+    .action-button {
+        background-color: #ba63dc;
+        color: #fff;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    .action-button-delete {
+        background-color: #ba0d72;
+        color: #fff;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    .action-button-logout {
+        background-color: #ac36db;
+        color: #fff;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
+    </style>
+
+    4. Menjawab beberapa pertanyaan berikut pada README.md pada root folder 
+    5. Melakukan git add, commit, dan push
