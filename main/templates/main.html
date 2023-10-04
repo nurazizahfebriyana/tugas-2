@@ -13,6 +13,10 @@
         background-color: #eac1ef;
     }
 
+    .product-bubble.last-product {
+    background-color: #ed48ff; /* untuk last product */
+    }
+
     .product-image {
         width: 100px;
         height: 100px;
@@ -49,7 +53,7 @@
     .action-button {
         background-color: #ba63dc;
         color: #fff;
-        padding: 5px 15px;
+        padding: 5px 10px;
         border: none;
         border-radius: 5px;
         margin-right: 5px;
@@ -73,6 +77,15 @@
         margin-right: 5px;
     }
 
+    .action-button-create {
+        background-color: #ba63dc;
+        color: #fff;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
 </style>
 
 {% endblock meta %}
@@ -82,6 +95,12 @@
         <a class="navbar-brand" href="#">
             <img src="https://yt3.googleusercontent.com/rD5w3FIsk4BSctADzRYlOBPsdipd9eurjyditDWnXZ8Nj9o7gOxB4649LkYik7HNTomJ9Vtl=s900-c-k-c0x00ffffff-no-rj" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
             Kwangya Store
+        </a>
+        <h5>Your last login: {{ last_login }}</h5>
+        <a href="{% url 'main:create_product' %}">
+            <button class="action-button-create">
+                Add New Product
+            </button>
         </a>
         <a href="{% url 'main:logout' %}">
             <button class="action-button-logout">
@@ -101,7 +120,7 @@
         {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
     
         {% for product in products %}
-        <div class="product-bubble">
+        <div class="product-bubble {% if forloop.last %}last-product{% endif %}">
             <img src="{{ product.photo }}" class="product-image">
             <div class="product-details">
                 <h4 class="product-name">{{ product.name }}</h4>
@@ -127,15 +146,6 @@
         </div>
         {% endfor %}
     </table>
-    
     <br />
-    
-    <h5>Your last login: {{ last_login }}</h5>
-    
-    <a href="{% url 'main:create_product' %}">
-        <button class="action-button">
-            Add New Product
-        </button>
-    </a>
     </body>
 {% endblock content %}

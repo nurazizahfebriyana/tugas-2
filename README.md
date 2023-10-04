@@ -566,6 +566,12 @@ Margin dan padding merupakan dua konsep pada desain CSS yang mengatur tata letak
             <img src="https://yt3.googleusercontent.com/rD5w3FIsk4BSctADzRYlOBPsdipd9eurjyditDWnXZ8Nj9o7gOxB4649LkYik7HNTomJ9Vtl=s900-c-k-c0x00ffffff-no-rj" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
             Kwangya Store
         </a>
+        <h5>Your last login: {{ last_login }}</h5>
+        <a href="{% url 'main:create_product' %}">
+            <button class="action-button-create">
+                Add New Product
+            </button>
+        </a>
         <a href="{% url 'main:logout' %}">
             <button class="action-button-logout">
                 Logout
@@ -647,6 +653,37 @@ Margin dan padding merupakan dua konsep pada desain CSS yang mengatur tata letak
     }
 
     </style>
+**Bonus**
+    -menambahkan kode kelas berikut pada main.html:
+    .product-bubble.last-product {
+    background-color: #ed48ff; /* untuk last product */
+    }
+
+    -menambahkan if untuk last-product:
+    <div class="product-bubble {% if forloop.last %}last-product{% endif %}">
+            <img src="{{ product.photo }}" class="product-image">
+            <div class="product-details">
+                <h4 class="product-name">{{ product.name }}</h4>
+                <p class="product-description">{{ product.description }}</p>
+                <p class="product-price">Price: {{ product.price }}</p>
+                <p class="product-amount">Amount: {{ product.amount }}</p>
+                <p class="product-date">Date added: {{ product.date_added }}</p>
+            </div>
+            <div class="product-actions">
+                <a href="{% url 'main:decrease' product.id %}">
+                    <button class="action-button">-</button>
+                </a>
+                <a href="{% url 'main:increase' product.id %}">
+                    <button class="action-button">+</button>
+                </a>
+                <a href="{% url 'main:edit_product' product.pk %}">
+                    <button class="action-button">Edit</button>
+                </a>
+                <a href="{% url 'main:delete' product.id %}">
+                    <button class="action-button-delete">Delete</button>
+                </a>
+            </div>
+        </div>
 
     4. Menjawab beberapa pertanyaan berikut pada README.md pada root folder 
     5. Melakukan git add, commit, dan push
