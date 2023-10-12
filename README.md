@@ -687,3 +687,81 @@ Margin dan padding merupakan dua konsep pada desain CSS yang mengatur tata letak
 
     4. Menjawab beberapa pertanyaan berikut pada README.md pada root folder 
     5. Melakukan git add, commit, dan push
+
+
+========================================================================================================================================================================================================================================================================
+Nama    : Nur Azizah Febriyana
+NPM     : 2206824363
+Kelas   : PBP-B
+
+**TUGAS-6**
+
+**Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.**
+    *asynchronous programming*
+    1. Tugas-tugas dieksekusi tanpa menunggu tugas sebelumnya selesai.
+    2. Tugas yang membutuhkan waktu lama tidak memblokir eksekusi program.
+    3. Menggunakan callback atau await/async untuk menangani hasil tugas yang mungkin belum selesai.
+    4. Kesalahan dapat ditangani lebih efektif dengan menggunakan mekanisme seperti try-catch pada blok await/async atau menggunakan callback untuk menangani kesalahan.
+
+    *synchronous programming*
+    1. Tugas-tugas dilakukan satu per satu dengan menunggu tugas sebelumnya selesai terlebih dahulu.
+    2. Tugas dapat menjadi "blocking," yang berarti eksekusi program terhenti atau diblokir sampai tugas tersebut selesai. 
+    3. Biasanya menggunakan pemanggilan fungsi atau metode secara langsung.
+    4. Kesalahan dapat menyebabkan program berhenti atau crash.
+
+**Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.**
+    *Paradigma event-driven programming* adalah pendekatan pemrograman di mana eksekusi program dipicu oleh kejadian (events) atau tindakan yang terjadi pada suatu waktu tertentu. Sebagai alternatif dari eksekusi program yang berurutan (synchronous), pada paradigma ini, program merespon peristiwa yang terjadi secara asynchronous. Maksud dari paradigma event-driven programming:
+
+    1. Program tidak berjalan dari atas ke bawah secara berurutan, tetapi merespon kejadian atau tindakan tertentu.
+    2. Peristiwa dapat mencakup interaksi pengguna (seperti klik tombol), koneksi jaringan, atau pemrosesan data yang telah selesai (seperti AJAX requests).
+    3. Dalam lingkungan web, event-driven programming seringkali digunakan untuk meningkatkan responsivitas halaman web dengan mengizinkan tugas tertentu untuk berjalan di latar belakang.
+
+**Jelaskan penerapan asynchronous programming pada AJAX.**
+    Asynchronous JavaScript and XML (AJAX) adalah teknik yang memungkinkan halaman web untuk mengirim dan menerima data dari server secara asinkron tanpa harus me-refresh seluruh halaman. Penerapan AJAX umumnya melibatkan asynchronous programming untuk memastikan bahwa permintaan ke server dan tanggapan dari server dapat ditangani tanpa menghentikan eksekusi program utama. 
+    Berikut adalah cara kerja AJAX:
+    1. Browser akan memanggil AJAX javascript untuk mengaktifkan XMLHttpRequest dan mengirimkan HTTP Request ke server. 
+    2. XMLHttpRequest dibuat untuk proses pertukaran data di server secara asinkron.
+    3. Server menerima, memproses, dan mengirimkan data kembali ke browser.  
+    4. Browser menerima data tersebut dan langsung ditampilkan di halaman website, tanpa perlu reload atau membuat halaman baru.
+
+**Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.**
+    
+    *Kemudahan Penggunaan*
+    Jika Anda sudah terbiasa dengan jQuery, maka menggunakan jQuery akan lebih mudah karena ia menyediakan metode yang mudah dipahami dan digunakan untuk mengambil data dari server. Namun, Fetch API juga cukup mudah digunakan dengan sintaks yang sederhana.
+
+    *Performa*
+    Fetch API cenderung memiliki performa yang lebih baik daripada jQuery. Fetch API menggunakan metode modern seperti Promise dan async/await, yang memungkinkan untuk mengambil data dengan cara yang lebih efisien dan tanpa harus mengunduh semua file jQuery yang besar.
+
+    *Ukuran*
+    Fetch API memiliki ukuran yang lebih kecil daripada jQuery. jQuery adalah sebuah library yang cukup besar, sementara Fetch API hanya berfokus pada fitur pengambilan data dari server. Jadi, jika Anda ingin mengurangi ukuran halaman web Anda, menggunakan Fetch API mungkin lebih baik.
+
+    *Kemampuan dan Kompatibilitas*
+    jQuery memiliki banyak fitur dan plugin yang dapat digunakan untuk membuat tampilan yang menarik dan interaktif. Namun, Fetch API adalah standar web modern dan didukung oleh semua browser terkini. Jadi, jika Anda ingin membuat aplikasi yang lebih canggih dan menggunakan fitur terbaru, Fetch API akan menjadi pilihan yang lebih baik.
+
+**Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+    1. Mengubah tugas 5 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+        a. Atur alur program untuk AJAX GET:
+            1. Buat fungsi di `views.py` untuk menampilkan data produk pada HTML menggunakan fetch, serta tambahkan kemampuan untuk menambahkan produk baru ke basis data melalui AJAX.
+            2. Tambahkan path yang mengarahkan ke fungsi views yang sudah dibuat sebelumnya.
+            3. Tambahkan ID dan script yang diperlukan di dalam file `main.html`.
+            4. Buat modal sebagai form di dalam file `main.html`.
+
+
+        b. Atur alur program untuk AJAX POST:
+            1. Buat fungsi baru di dalam script di file `main.html`.
+            2. Tambahkan fungsi `onclick` untuk menambahkan item collections.
+
+        
+    2. Melakukan perintah collectstatic
+        Perintah collecstatic dilakukan menyesuaikan tutorial 2 pada bagian Menambahkan Konfigurasi Deployment ke PaaS PBP Fasilkom UI
+
+    3. Menjawab pertanyaan di dalam file README.md
+
+    4. Melakukan git workflow (add, commit, push)
+
+    5. Melakukan deployment ke PaaS PBP Fasilkom UI
+        - Mengunduh environ 
+        - Membuat beberapa file dan folder terkait deployment (Procfile, .dockerignore, Dockerfile, folder .github dan workflows, pbp-deploy.yml)
+        - Mengedit settings.py dengan menambahkan beberapa kode baru terkait deployment
+        - Set repository secret pada Secrets and variables di settings repository github dengan memasukkan DOKKU_SERVER_IP, DOKKU_APP_NAME, dan DOKKU_SSH_PRIVATE_KEY
+        akses deployment : https://nur-azizah25-tutorial.pbp.cs.ui.ac.id

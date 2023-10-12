@@ -86,66 +86,155 @@
         margin-right: 5px;
     }
 
+    .custom-btn-color {
+        background-color:#8b659a; /* Warna kuning */
+        color: #ffffff; /* Warna teks putih */
+        padding: 5px 15px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 5px;
+    }
+
 </style>
 
 {% endblock meta %}
 {% block content %}
-<nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="https://yt3.googleusercontent.com/rD5w3FIsk4BSctADzRYlOBPsdipd9eurjyditDWnXZ8Nj9o7gOxB4649LkYik7HNTomJ9Vtl=s900-c-k-c0x00ffffff-no-rj" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            Kwangya Store
-        </a>
-        <h5>Your last login: {{ last_login }}</h5>
-        <a href="{% url 'main:create_product' %}">
-            <button class="action-button-create">
-                Add New Product
-            </button>
-        </a>
-        <a href="{% url 'main:logout' %}">
-            <button class="action-button-logout">
-                Logout
-            </button>
-        </a>
-    </div>
-</nav>
+<!DOCTYPE html>
+<html>
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://yt3.googleusercontent.com/rD5w3FIsk4BSctADzRYlOBPsdipd9eurjyditDWnXZ8Nj9o7gOxB4649LkYik7HNTomJ9Vtl=s900-c-k-c0x00ffffff-no-rj" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                Kwangya Store
+            </a>
+            <h5>Your last login: {{ last_login }}</h5>
+            <a href="{% url 'main:create_product' %}">
+                <button class="action-button-create">
+                    Add New Product
+                </button>
+            </a>
+            <a href="{% url 'main:logout' %}">
+                <button class="action-button-logout">
+                    Logout
+                </button>
+            </a>
+        </div>
+    </nav>
+</body>
 
     <h3>Nama: </h3>
     <p>{{nama}}</p>
     <h3>Kelas: </h3>
     <p>{{kelas}}</p>
 
-    <body style="background-color:  #e094f0;">
-    <table>
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    <body>
+        <div class="row" id="product_table">
+        </div>
+    </body>
+</html>
+
+    <body style="background-color:  #e094f0;"> </body>
     
-        {% for product in products %}
-        <div class="product-bubble {% if forloop.last %}last-product{% endif %}">
-            <img src="{{ product.photo }}" class="product-image">
-            <div class="product-details">
-                <h4 class="product-name">{{ product.name }}</h4>
-                <p class="product-description">{{ product.description }}</p>
-                <p class="product-price">Price: {{ product.price }}</p>
-                <p class="product-amount">Amount: {{ product.amount }}</p>
-                <p class="product-date">Date added: {{ product.date_added }}</p>
-            </div>
-            <div class="product-actions">
-                <a href="{% url 'main:decrease' product.id %}">
-                    <button class="action-button">-</button>
-                </a>
-                <a href="{% url 'main:increase' product.id %}">
-                    <button class="action-button">+</button>
-                </a>
-                <a href="{% url 'main:edit_product' product.pk %}">
-                    <button class="action-button">Edit</button>
-                </a>
-                <a href="{% url 'main:delete' product.id %}">
-                    <button class="action-button-delete">Delete</button>
-                </a>
+    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="productImage" class="col-form-label">Image:</label>
+                            <input type="url" class="form-control" id="productImage" name="photo" accept="image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label for="productName" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="productName" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productPrice" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="productPrice" name="price" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productDescription" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="productDescription" name="description" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="productAmount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="productAmount" name="amount" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
             </div>
         </div>
-        {% endfor %}
-    </table>
-    <br />
-    </body>
+    </div>
+   
+    <button type="button" class="btn custom-btn-color" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product by AJAX</button>
+    <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+    
+        async function refreshProducts() {
+            document.getElementById("product_table").innerHTML = ""
+            const products = await getProducts();
+            let htmlString = ""
+            let counter = 0
+            const totalProducts = products.length
+
+            for (const item of products) {
+                counter++
+                const isLastItem = counter === totalProducts
+                htmlString += `
+                <div class="product-bubble ${isLastItem ? 'last-product' : ''}">
+                    <img src="${item.fields.photo}" class="product-image">
+                    <div class="product-details">
+                        <h4>${item.fields.name}</h4>
+                        <p>${item.fields.description}</p>
+                        <p>Price: ${item.fields.price}</p>
+                        <p>Amount: ${item.fields.amount}</p>
+                        <p>Date added: ${item.fields.date_added}</p>
+                    </div>
+                    <div class="product-actions">
+                        <a href="decrease/${item.pk}">
+                            <button class="action-button">-</button>
+                        </a>
+                        <a href="increase/${item.pk}">
+                            <button class="action-button">+</button>
+                        </a>
+                        <a href="edit-product/${item.pk}">
+                            <button class="action-button">Edit</button>
+                        </a>
+                        <a href="delete/${item.pk}">
+                            <button class="action-button-delete">Delete</button>
+                        </a>
+                    </div>
+                </div>`
+            }
+            document.getElementById("product_table").innerHTML = htmlString
+        }
+    
+        refreshProducts()
+    
+        function addProduct() {
+            fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshProducts)
+    
+            document.getElementById("form").reset()
+            return false
+        }
+        
+        document.getElementById("button_add").onclick = addProduct
+    </script>
+    
+    
 {% endblock content %}
