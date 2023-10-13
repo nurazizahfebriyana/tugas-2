@@ -764,4 +764,4 @@ Kelas   : PBP-B
         - Membuat beberapa file dan folder terkait deployment (Procfile, .dockerignore, Dockerfile, folder .github dan workflows, pbp-deploy.yml)
         - Mengedit settings.py dengan menambahkan beberapa kode baru terkait deployment
         - Set repository secret pada Secrets and variables di settings repository github dengan memasukkan DOKKU_SERVER_IP, DOKKU_APP_NAME, dan DOKKU_SSH_PRIVATE_KEY
-        akses deployment : https://nur-azizah25-tutorial.pbp.cs.ui.ac.id
+        akses deployment : https://nur-azizah25-tugas.pbp.cs.ui.ac.id
