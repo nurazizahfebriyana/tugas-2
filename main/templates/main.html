@@ -87,8 +87,8 @@
     }
 
     .custom-btn-color {
-        background-color:#8b659a; /* Warna kuning */
-        color: #ffffff; /* Warna teks putih */
+        background-color:#8b659a; 
+        color: #ffffff; 
         padding: 5px 15px;
         border: none;
         border-radius: 5px;
@@ -176,7 +176,9 @@
         </div>
     </div>
    
-    <button type="button" class="btn custom-btn-color" data-bs-toggle="modal" data-bs-target="#addProductModal">Add Product by AJAX</button>
+    <button type="button" class="btn" style="background-color: #8b659a; color: #ffffff; padding: 5px 15px; border: none; border-radius: 5px; margin-right: 5px;">
+        Add Product by AJAX
+    </button>
     <script>
         async function getProducts() {
             return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
